@@ -22,10 +22,13 @@ int main (int argc, char *argv[]) {
 
     gtk_init(&argc, &argv);
 
+	// window
     GtkWindow *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Emoji Charmap");
     gtk_window_set_default_size(GTK_WINDOW(window), 450, 320);
+    gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
 
+	// objects
     GtkWidget *button = gtk_button_new_with_label("Close");
     GtkWidget *label = gtk_label_new("Where it this?!");
     gtk_container_add(GTK_CONTAINER(window), button);
