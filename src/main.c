@@ -5,6 +5,9 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+#define INIT_WINDOW_HEIGHT 280
+#define INIT_WINDOW_WIDTH 450
+
 #include "args.h"
 
 int main (int argc, char *argv[]) {
@@ -25,17 +28,15 @@ int main (int argc, char *argv[]) {
 	// window
     GtkWindow *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Emoji Charmap");
-    gtk_window_set_default_size(GTK_WINDOW(window), 450, 320);
-    gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
+	gtk_widget_set_size_request(GTK_WIDGET(window), INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
+    gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
 
 	// objects
-    GtkWidget *button = gtk_button_new_with_label("Close");
-    GtkWidget *label = gtk_label_new("Where it this?!");
-    gtk_container_add(GTK_CONTAINER(window), button);
-    gtk_container_add(GTK_CONTAINER(window), label);
+    GtkWidget *close_button = gtk_button_new_with_label("Close");
+    gtk_container_add(GTK_CONTAINER(window), close_button);
 
 	// event creator
-	g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(gtk_main_quit), window);
+	g_signal_connect(G_OBJECT(close_button), "clicked", G_CALLBACK(gtk_main_quit), window);
     g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     // get screen
